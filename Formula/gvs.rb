@@ -5,21 +5,21 @@
 class Gvs < Formula
   desc "A command line tool to manage multiple active Go versions."
   homepage "https://github.com/VassilisPallas/gvs"
-  version "0.1.0"
+  version "0.1.1"
   license "MIT"
 
   on_macos do
-    if Hardware::CPU.arm?
-      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.0/gvs_0.1.0_darwin_arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "cf5fc297f0232048f1a59defddea7d84b0b6a04d2f65b9ce98ff3d4e73910b6e"
+    if Hardware::CPU.intel?
+      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.1/gvs_0.1.1_darwin_amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "35ebb2c88641acc33237081b17ecbd065f5620dc254a9abc85d6fb76282e121d"
 
       def install
         bin.install "gvs"
       end
     end
-    if Hardware::CPU.intel?
-      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.0/gvs_0.1.0_darwin_amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "9a4a67d32563c2023e70ee8730564b130897e9b6af114c18408dba04e743a768"
+    if Hardware::CPU.arm?
+      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.1/gvs_0.1.1_darwin_arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "2fbd30817b1bfa902ba263d96039f44327077be20d4d90aaff7ddc41dfb267f1"
 
       def install
         bin.install "gvs"
@@ -28,25 +28,25 @@ class Gvs < Formula
   end
 
   on_linux do
+    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
+      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.1/gvs_0.1.1_linux_arm64.tar.gz", using: CurlDownloadStrategy
+      sha256 "fd04e1fb1076c88dbcfacf52bc573b7cc026b3eaea79e9b98a79644e78a7bd2e"
+
+      def install
+        bin.install "gvs"
+      end
+    end
     if Hardware::CPU.intel?
-      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.0/gvs_0.1.0_linux_amd64.tar.gz", using: CurlDownloadStrategy
-      sha256 "75bc10dcf9a26f7f200e8b383878628268c650b7c3254064e0e0659a260e247d"
+      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.1/gvs_0.1.1_linux_amd64.tar.gz", using: CurlDownloadStrategy
+      sha256 "920b987bf9ba2e8233c1b3baa61d6013998090afb69b8fca4e9e612a5e0b25ea"
 
       def install
         bin.install "gvs"
       end
     end
     if Hardware::CPU.arm? && !Hardware::CPU.is_64_bit?
-      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.0/gvs_0.1.0_linux_armv6.tar.gz", using: CurlDownloadStrategy
-      sha256 "1dc19d7a44e383f197d29bc9f41ee3a4046d28b5b7ef41b0a1246e8c0b54c428"
-
-      def install
-        bin.install "gvs"
-      end
-    end
-    if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.0/gvs_0.1.0_linux_arm64.tar.gz", using: CurlDownloadStrategy
-      sha256 "a810d62705eab7feb4d7576e9553075b9d84b3ea14fada280cddd7bd2f4d7e0c"
+      url "https://github.com/VassilisPallas/gvs/releases/download/0.1.1/gvs_0.1.1_linux_armv6.tar.gz", using: CurlDownloadStrategy
+      sha256 "2ac72bae0fb09942f199a6ef64f07959a546bd6e085356546dc105f8de3ced62"
 
       def install
         bin.install "gvs"
